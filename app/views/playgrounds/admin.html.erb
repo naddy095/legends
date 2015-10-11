@@ -27,6 +27,7 @@
 <table class="table table-bordered">
 <thead>
 <tr>
+<th><%= 'Address Bar'%></th>
 <th><%='Name'%></th>
  <th><%='Address'%></th>
  <th><%='Type' %></th>
@@ -36,6 +37,7 @@
 
 <% @pending_playgrounds.each do | playground| %>
 <tr>
+    <td><a href="/playgrounds" target="_blank" onclick="update_location('<%=playground.latitude%>','<%=playground.longitude%>','<%=playground.id%>')" ><%=playground.address_bar_index%></a></td>
     <td><%= playground.name.capitalize %></td>
     <td><%=playground.address %></td>
     <%if playground.myadd_type_id == 1  %>
@@ -154,4 +156,28 @@ function update_house(id,status){
     });
 
 }
+
+function update_location(lat,log,p_id){
+
+
+
+$.ajax({
+    type: "get",
+    url: "/playgrounds",
+    data: {
+    "lat": lat,
+    "log": log,
+    "id":p_id
+    },
+    dataType : 'script',
+    iframe: 'true',
+    cache: false,
+    success: function(data){
+    }
+    });
+    
+    // Invoke it
+    // createMarkerWithInfoWindow();
+}
+
 </script>

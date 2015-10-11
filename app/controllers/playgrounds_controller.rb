@@ -15,12 +15,17 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds
   # GET /playgrounds.json
   def index
+    if params[:id]
+      puts"ASSSSSSS"
+    else
+      
     @playgrounds = Playground.where(:status_id =>true)
     @json = @playgrounds.to_gmaps4rails do |playground, marker|
       @playground = playground
       marker.infowindow render_to_string(:action => 'show', :layout => false)    
       marker.json({ :id => @playground.id })
     end
+   end
   end
 
   # GET /playgrounds/1
