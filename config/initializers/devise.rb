@@ -23,7 +23,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
    require 'omniauth-google-oauth2'
-  config.omniauth :google_oauth2, "773189047114-gggd3nrdbldj9sj5hvftl19h0vjan1gn.apps.googleusercontent.com", "jaks732YNptp4rw0r4M7I3PV",  {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
+  config.omniauth :google_oauth2, "105083838432-cb5dgkksbooh2n68f47c61dogvnqojvh.apps.googleusercontent.com", "dTPQlOltsKtYVpDO4tsvxrrv",  {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
   # config.omniauth :facebook, "333154613391129", "6d3b52be7c99dea28b04bd1a866b1a20"
   config.omniauth :facebook, "695460620588445", "505ffe2176ccfac04ec638ed8420165e"
 
