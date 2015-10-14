@@ -1,3 +1,14 @@
+
+
+<%= form_for @playground do |f| %>
+<%=  f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path %>
+<% end %>
+
+
+
+
+<div>
+
 <%= stylesheet_link_tag "gmaps4rails" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -165,10 +176,11 @@ copy
     </script>
 <% end %>
 
+  
+</div>
 <%# content_for :contextual do %>
     <%#=render :partial => 'home_side' %>
 <%# end %>
-
 
 
 

@@ -1,5 +1,6 @@
 class PlaygroundsController < ApplicationController
   require 'jwt/json'
+  autocomplete :playground, :address, :full => false
 
   before_action :authenticate_user!, only: [:admin]
   before_action :set_playground, only: [:show, :edit, :update, :destroy]

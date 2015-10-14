@@ -44,6 +44,7 @@ gem 'jquery-ui-rails'
 
 # geocoder gem
 gem "geocoder"
+gem 'rails3-jquery-autocomplete'
 
 # bootstrap
 gem 'bootstrap-sass'

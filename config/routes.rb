@@ -5,6 +5,7 @@ Playgrounds::Application.routes.draw do
     get 'update_house_status'
     get 'authenticate_house_registration'
     get 'update_spam'
+    get :autocomplete_playground_address
   }
  
   end

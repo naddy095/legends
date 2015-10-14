@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151005105417) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "postal_code"
+    t.string   "postal_cayode"
     t.string   "address_bar_index"
     t.boolean  "gmaps"
     t.integer  "myadd_type_id"
