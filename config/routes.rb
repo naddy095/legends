@@ -19,6 +19,8 @@ get 'signout', to: 'sessions#destroy', as: 'signout'
 match 'admin' => 'playgrounds#admin', as: :admin, via: [:get, :post]
 
 devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+# get "/users/sign_in" => 'omniauth_callbacks#create'
   
 root to: 'playgrounds#index'
 
