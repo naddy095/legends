@@ -7055,3 +7055,7 @@ button.close {
     color: #fff; /* active text color */
     background-color: #a94442; /* active bg color */
 }
+.pop1
+{
+  min-height:110px !important;
+}

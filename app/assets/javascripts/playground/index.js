@@ -61,7 +61,7 @@ function openInfowindow(html, marker){
     html_v = html;
     marker_v = marker;
 
-     var contentString = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-6">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(1);">House<i class="fa fa-home"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(2);">Apartment<i class="fa fa-building"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(3);">Building<i class="fa fa-building-o"></i></a>'+'</h3>'+'</div>'+'</div>'
+     var contentString = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(1);">House<i class="fa fa-home"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(2);">Apartment<i class="fa fa-building"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(3);">Building<i class="fa fa-building-o"></i></a>'+'</h3>'+'</div>'+'</div>'
       '</div>';
 
     // Set the content and open
@@ -81,7 +81,7 @@ function closeInfowindow() {
 //display the home or apartment form here
 function display_form(){
  // html_val = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-6">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1('+h_v+');">Gmail<i class="fa fa-google"></i></a>'+'<a href="javascript:void(0)" onclick="display_form1('+h_v+');">Facebook<i class="fa fa-facebook-official"></i></a>'+'</div>'+'</div>';
-   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-6">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'</div>'+'</div>'
+   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'</div>'+'</div>'
   var html_h = html_val;
   var html_m = playgroundsNewMarker;
 
