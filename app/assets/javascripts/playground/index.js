@@ -80,7 +80,7 @@ function closeInfowindow() {
 
 //display the home or apartment form here
 function display_form(){
- // html_val = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-6">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1('+h_v+');">Gmail<i class="fa fa-google"></i></a>'+'<a href="javascript:void(0)" onclick="display_form1('+h_v+');">Facebook<i class="fa fa-facebook-official"></i></a>'+'</div>'+'</div>';
+ 
    html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'</div>'+'</div>'
   var html_h = html_val;
   var html_m = playgroundsNewMarker;
