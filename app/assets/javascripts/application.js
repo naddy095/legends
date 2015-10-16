@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require gmaps-auto-complete
 //= require autocomplete-rails
 //= require turbolinks
 //= require bootstrap
@@ -21,15 +20,3 @@
 
 
 
-jQuery(function() {
-  var completer;
-
-  completer = new GmapsCompleter({
-    inputField: '#gmaps-input-address',
-    errorField: '#gmaps-error'
-  });
-
-  completer.autoCompleteInit({
-    country: "us"
-  });
-});

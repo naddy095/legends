@@ -41,7 +41,6 @@ gem 'gmaps4rails'
 
 # jquery
 gem 'jquery-ui-rails'
-gem 'gmaps-autocomplete-rails'
 
 # geocoder gem
 gem "geocoder"

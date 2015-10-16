@@ -37,6 +37,7 @@ class PlaygroundsController < ApplicationController
   end
 
   def spam
+    @playground = Playground.new
     respond_with(@playground, :layout =>  !request.xhr?)
   end
 
