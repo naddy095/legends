@@ -16,6 +16,7 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds
   # GET /playgrounds.json
   def index
+    @playground = Playground.new
     if params[:id]
       puts"ASSSSSSS"
     else
@@ -32,6 +33,10 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds/1
   # GET /playgrounds/1.json
   def show
+    respond_with(@playground, :layout =>  !request.xhr?)
+  end
+
+  def spam
     respond_with(@playground, :layout =>  !request.xhr?)
   end
 

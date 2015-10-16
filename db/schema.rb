@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005105417) do
+ActiveRecord::Schema.define(version: 20151016110112) do
 
   create_table "playgrounds", force: true do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151005105417) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "postal_cayode"
+    t.string   "postal_code"
     t.string   "address_bar_index"
     t.boolean  "gmaps"
     t.integer  "myadd_type_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20151005105417) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "place_id"
   end
 
   create_table "users", force: true do |t|

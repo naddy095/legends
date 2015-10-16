@@ -37,7 +37,7 @@
 
 <% @pending_playgrounds.each do | playground| %>
 <tr>
-    <td><a href="/playgrounds/<%= playground.id %>" target="_blank" onclick="update_location('<%=playground.latitude%>','<%=playground.longitude%>','<%=playground.id%>')" ><%=playground.address_bar_index%></a></td>
+    <td><a href=" /playgrounds/spam" target="_blank" onclick="update_location('<%=playground.latitude%>','<%=playground.longitude%>','<%=playground.id%>')" ><%=playground.address_bar_index%></a></td>
     <td><%= playground.name.capitalize %></td>
     <td><%=playground.address %></td>
     <%if playground.myadd_type_id == 1  %>
