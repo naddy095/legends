@@ -69,6 +69,7 @@ class PlaygroundsController < ApplicationController
     elsif params[:home_type] && params[:home_type]=="building"
       @playground.myadd_type_id=3
     end
+    address = params[:playground][:address]
     country = params[:playground][:country][0..1].upcase
     state = params[:playground][:state][0..1].upcase
     city = params[:playground][:city][0..1].upcase

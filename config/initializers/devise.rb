@@ -1,3 +1,5 @@
+require_relative 'settings'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -25,8 +27,8 @@ Devise.setup do |config|
    require 'omniauth-google-oauth2'
   config.omniauth :google_oauth2, "482154098883-e4krm4foor423d4lths0aj585c0jkin5.apps.googleusercontent.com", "PcoQDUi5VmF73oQDoB_nQZko",  {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
   # config.omniauth :facebook, "333154613391129", "6d3b52be7c99dea28b04bd1a866b1a20"
-  config.omniauth :facebook, "695460620588445", "505ffe2176ccfac04ec638ed8420165e"
-
+  # config.omniauth :facebook, APP_CONFIG"695460620588445", "505ffe2176ccfac04ec638ed8420165e"
+  config.omniauth :facebook, APP_CONFIG[:facebook][:id], APP_CONFIG[:facebook][:secret_key]
  # provider :facebook, CUSTOMER_KEY, CUSTOMER_SECRET, {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
 
   # ==> Configuration for any authentication mechanism

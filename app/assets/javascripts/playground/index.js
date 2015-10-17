@@ -181,7 +181,7 @@ function geocodePoint(latlng, callback) {
         if (responses && responses.length > 0) {
               
               // Address altogether style 
-              address = 'Address at ' + responses[0].formatted_address;
+              address = 'Address at' + responses[0].formatted_address;
               
               // Extract address parts
               responses[0].address_components.forEach(function(el) { 
@@ -231,6 +231,7 @@ function alert_user(message, type) {
 }
 
 function start_store(){
+
   var type = $('#house_type').val();
    country = $('#playground_country').val();
    name = $('#playground_name').val();
@@ -254,6 +255,7 @@ function start_store(){
    form_data.append("playground[picture]", file_data_two); 
    form_data.append("playground[country]", country);  
    form_data.append("playground[name]", name); 
+   debugger;
    form_data.append("playground[address]", address);  
    form_data.append("home_type", type);  
    form_data.append("playground[city]", city);  
@@ -340,3 +342,36 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
   }
 
 
+function showMarker (playground) {
+  playgroundMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(playground.latitude, playground.longitude), 
+      map: Gmaps.map.serviceObject,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+  });
+
+  // openPlagroundPopup(playground, playgroundMarker)
+
+  playgroundMarker.addListener('click', function() {
+    openPlagroundPopup(playground, playgroundMarker);
+  });
+
+}
+
+function openPlagroundPopup(playground, playgroundMarker){
+
+    $.ajax({
+        url: '/playgrounds/' + playground.id,
+        type: 'GET',
+        async: false,
+        success: function(html) { 
+
+            closeInfowindow();
+            // Add on close behaviour to clear this marker
+            // Set the content and open
+            Gmaps.map.visibleInfoWindow = new google.maps.InfoWindow({content: html});
+            Gmaps.map.visibleInfoWindow.open(Gmaps.map.serviceObject, playgroundMarker);
+    
+        }
+    });
+    
+}
