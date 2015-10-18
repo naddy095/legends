@@ -255,7 +255,6 @@ function start_store(){
    form_data.append("playground[picture]", file_data_two); 
    form_data.append("playground[country]", country);  
    form_data.append("playground[name]", name); 
-   debugger;
    form_data.append("playground[address]", address);  
    form_data.append("home_type", type);  
    form_data.append("playground[city]", city);  
