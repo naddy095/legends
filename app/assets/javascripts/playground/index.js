@@ -265,7 +265,7 @@ function start_store(){
    form_data.append("playground[route]", route); 
    form_data.append("playground[street_number]", street_number);
    
-
+   debugger
     $.ajax({
             type: 'POST',
             url: '/playgrounds',
@@ -274,7 +274,14 @@ function start_store(){
             contentType: false,
             dataType : 'script',
             cache: false,
-            success: function(data){
+
+            success: function(data){ 
+
+
+             // window.location.href = "/playgrounds";
+            },
+            error: function (jqXHR, exception) {
+              alert("error");
             }
             });
 
@@ -374,3 +381,4 @@ function openPlagroundPopup(playground, playgroundMarker){
     });
     
 }
+
