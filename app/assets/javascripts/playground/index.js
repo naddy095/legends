@@ -181,7 +181,7 @@ function geocodePoint(latlng, callback) {
         if (responses && responses.length > 0) {
               
               // Address altogether style 
-              address = 'Address at' + responses[0].formatted_address;
+              address =  responses[0].formatted_address;
               
               // Extract address parts
               responses[0].address_components.forEach(function(el) { 
