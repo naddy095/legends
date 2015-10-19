@@ -7074,3 +7074,33 @@ button.close {
   color:#fff;
   padding:10px;
 }
+.ui-menu {
+    background: none repeat scroll 0 0 #fff;
+    border: 2px solid #999;
+    border-radius: 5px;
+    cursor: pointer;
+    list-style: outside none none;
+    padding-left: 10px;
+    width: 400px !important;
+    padding-right:10px;
+
+}
+.ui-menu li
+{
+  border-bottom:1px solid #666;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.ui-menu li:hover
+{
+  background-color:#09f;
+  color:#fff;
+}
+.ui-menu li:last-child
+{
+  border:none;
+}
+.address
+{
+  margin-bottom:15px;
+}
