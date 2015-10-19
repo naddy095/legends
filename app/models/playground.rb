@@ -10,7 +10,8 @@ class Playground < ActiveRecord::Base
   
   #validates_inclusion_of :sport, :in => Playground::SPORTS
   validates_presence_of :name
-  # validates_presence_of :address
+  validates_presence_of :address
+  validates_presence_of :spam_details
 
 has_attached_file :logo, :styles => {:small => "21x21", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
 :path => ":rails_root/public/system/:attachment/:id/:style/:filename",

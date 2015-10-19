@@ -7059,3 +7059,18 @@ button.close {
 {
   min-height:110px !important;
 }
+.pop2 h3
+{
+  float:none !important;
+  margin-bottom: 10px !important;
+}
+.spam2
+{
+  height:200px !important;
+}
+.postspam
+{
+  background:#09f;
+  color:#fff;
+  padding:10px;
+}

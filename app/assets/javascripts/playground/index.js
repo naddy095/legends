@@ -97,15 +97,15 @@ function display_form1(h_v){
   //display the home or apartment type
   
   if (h_v && h_v==1){
-    html_val = '<input type="hidden" name="house_type" id="house_type" value="house"/>'+html_v;
+    html_val = '<strong><h3>House:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="house"/>'+html_v;
   
   }
   else if (h_v && h_v==2){
 
-    html_val = '<input type="hidden" name="house_type" id="house_type" value="apartment"/>'+html_v;
+    html_val = '<strong><h3>Apartment:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="apartment"/>'+html_v;
   
   }else if (h_v && h_v==3){
-    html_val = '<input type="hidden" name="house_type" id="house_type" value="building"/>'+html_v;
+    html_val = '<strong><h3>Building:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="building"/>'+html_v;
   }else{
     html_val = html_v;
   }
@@ -265,7 +265,7 @@ function start_store(){
    form_data.append("playground[route]", route); 
    form_data.append("playground[street_number]", street_number);
    
-   debugger
+  
     $.ajax({
             type: 'POST',
             url: '/playgrounds',
@@ -322,7 +322,7 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
     });
     
      html_m = playgroundsNewMarker
-     html_h = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-6">'+'your comments:<BR><TEXTAREA NAME="comments" COLS=40 ROWS=6 ID="spam_desc"></TEXTAREA>'+'<a href="javascript:void(0);"  onclick= "post_spam('+id+');" class="btn">Post Spam</a> '+ '</div>'+'</div>'+'</div>'
+     html_h = '<div class="modal-content pop1 spam2">'+'<div class="modal-body">'+'<div class="col-md-10">'+'<strong>Report Spam:</strong><BR><TEXTAREA NAME="comments" COLS=40 ROWS=6 ID="spam_desc"></TEXTAREA>'+'<a href="javascript:void(0);"  onclick= "post_spam('+id+');" class="btn postspam">Post Spam</a> '+ '</div>'+'</div>'+'</div>'
 
       closeInfowindow();
 
@@ -333,18 +333,30 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
 
   function post_spam(id){
     var desc = $('#spam_desc').val()
+      if (desc == null || desc == "") {
+        alert("Enter Valid Reason");
+        return false;
+    }
+
+   else {
      $.ajax({
-        url: '/playgrounds/update_spam?' + jQuery.param({playground_id: id, spam_desc: desc}) + '#chunked=true',
+        url: '/playgrounds/update_spam?' + jQuery.param({playground_id: id, spam_desc: desc}) + '',
         type: 'GET',
         async: false,
         success: function(html) { 
 
-            closeInfowindow();
+             closeInfowindow()
+                      
+
             // Add on close behaviour to clear this marker
          
-        }
-    });
+        },
+   
 
+    });
+  
+     }
+      
   }
 
 
@@ -382,3 +394,4 @@ function openPlagroundPopup(playground, playgroundMarker){
     
 }
 
+ 

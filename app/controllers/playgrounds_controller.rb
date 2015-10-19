@@ -160,6 +160,11 @@ class PlaygroundsController < ApplicationController
     @playground = Playground.find(params[:playground_id].to_i)
     @playground.update(:is_spam =>true, :spam_details => params[:spam_desc])
     render :nothing => true, :status => 200, :content_type => 'text/html'
+    # if  @playground.save
+    #   redirect_to :back
+    # else
+    #   puts 'error'
+    # end
   end
 
 private
