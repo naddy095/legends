@@ -178,7 +178,7 @@ class PlaygroundsController < ApplicationController
         :id => playground.id,
         :label => playground.address,
         :value => playground.address,
-        :owner => playground.user_id == current_user.id
+        :owner => playground.user_id == current_user.try(:id)
       }
     }
   end
