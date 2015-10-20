@@ -2,7 +2,7 @@
 
 <div>
  <%= form_for @playground do |f| %>
-  <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here' %>
+  <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here', 'data-delimiter' => ',', :multiple => true %>
 <% end %>
 
  
@@ -141,7 +141,7 @@ copy
             :disableDoubleClickZoom => true,
             :detect_location => true,       
             :center_on_user  => true,        
-            :zoom => 4,
+            :zoom => 14,
             :auto_adjust => false
           }
 ) %>

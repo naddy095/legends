@@ -376,9 +376,16 @@ function showMarker (playground) {
 }
 
 function openPlagroundPopup(playground, playgroundMarker){
+  if (playground.owner) {
+    var url = '/playgrounds/' + playground.id + '/edit';
+  } else {
+    var url = '/playgrounds/' + playground.id;
+  }
+
+    
 
     $.ajax({
-        url: '/playgrounds/' + playground.id,
+        url: url,
         type: 'GET',
         async: false,
         success: function(html) { 

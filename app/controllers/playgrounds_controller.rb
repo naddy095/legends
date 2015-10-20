@@ -37,8 +37,8 @@ class PlaygroundsController < ApplicationController
   end
 
   def spam
-    @playground = Playground.new
-    respond_with(@playground, :layout =>  !request.xhr?)
+     @playground = Playground.new
+     respond_with(@playground, :layout =>  !request.xhr?)
   end
 
   # GET /playgrounds/new
@@ -49,10 +49,10 @@ class PlaygroundsController < ApplicationController
 
   # GET /playgrounds/1/edit
   def edit
-    respond_to do |format|
-      format.js {}
-      format.html {}
-    end
+    # respond_to do |format|
+    #   format.js {}
+    #   format.html {}
+    # end
   end
 
   # POST /playgrounds
@@ -165,6 +165,22 @@ class PlaygroundsController < ApplicationController
     # else
     #   puts 'error'
     # end
+  end
+
+  def autocomplete_playground_address
+    
+    term = params[:term]
+    # address_bar_index = params[:address_bar_index]
+    playgrounds = Playground.where('address LIKE ? OR address_bar_index LIKE ?', "%#{term}%", "%#{term}%").order(:address)
+    render :json => playgrounds.map { |playground| 
+      { :latitude => playground.latitude,
+        :longitude => playground.longitude,
+        :id => playground.id,
+        :label => playground.address,
+        :value => playground.address,
+        :owner => playground.user_id == current_user.id
+      }
+    }
   end
 
 private
