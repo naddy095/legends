@@ -2,7 +2,7 @@
 
 <div>
  <%= form_for @playground do |f| %>
-  <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here', 'data-delimiter' => ',', :multiple => true %>
+  <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here', 'data-delimiter' => ',' %>
 <% end %>
 
  
