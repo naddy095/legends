@@ -1,4 +1,3 @@
-<% if @playground_exist.nil? %>
 <%if (@playground.errors.empty?) %>    
     
     var createMarkerWithInfoWindow = function () {
@@ -54,7 +53,3 @@ alert('<%=@playground.errors.full_messages.join(',')%>');
 
 <%end%>
 
-<%else %>
-alert('User already created the location');
-
-<% end %>

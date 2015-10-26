@@ -49,6 +49,7 @@ class PlaygroundsController < ApplicationController
 
   # GET /playgrounds/1/edit
   def edit
+    @playground = Playground.find(params[:id])
     # respond_to do |format|
     #   format.js {}
     #   format.html {}
@@ -58,9 +59,9 @@ class PlaygroundsController < ApplicationController
   # POST /playgrounds
   # POST /playgrounds.json
   def create
-    @playground_exist = User.find(current_user.id).playground
+   
 
-    if @playground_exist.nil?
+   
     @playground = Playground.new(playground_params)
     if params[:home_type] && params[:home_type]=="house"
       @playground.myadd_type_id=1
@@ -70,6 +71,8 @@ class PlaygroundsController < ApplicationController
       @playground.myadd_type_id=3
     end
     address = params[:playground][:address]
+    # logo    = params[:playground][:logo]
+    # picture = params[:playground][:picture]
     country = params[:playground][:country][0..1].upcase
     state = params[:playground][:state][0..1].upcase
     city = params[:playground][:city][0..1].upcase
@@ -82,24 +85,20 @@ class PlaygroundsController < ApplicationController
     @playground.user_id = current_user.id
     respond_to do |format|
       if @playground.save
-        format.html { redirect_to @playground, notice: 'Playground was successfully created.' }
+        format.html { redirect_to :back, notice: 'Playground was successfully created.' }
         format.js {}
       else
         format.html { render action: 'new' }
         format.js {}      
       end
     end
-  else
-    respond_to do |format|
-    #format.html { redirect_to @playground, notice: 'Playground is already created by current user' }
-        format.js {}
-      end
-  end
+ 
   end
 
   # PATCH/PUT /playgrounds/1
   # PATCH/PUT /playgrounds/1.json
   def update
+     @playground = Playground.find(params[:id])
     respond_to do |format|
       if @playground.update(playground_params)
           if params[:home_type] && params[:home_type]=="house"

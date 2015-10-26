@@ -16,12 +16,12 @@ class Playground < ActiveRecord::Base
 has_attached_file :logo, :styles => {:small => "21x21", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
 :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
 :url => "/system/:attachment/:id/:style/:filename"
- validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
+ validates_attachment_content_type :logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 has_attached_file :picture, :styles => {:small => "21x21", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
 :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
 :url => "/system/:attachment/:id/:style/:filename"
- validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+ validates_attachment_content_type :picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
 
   # *** Server-side reverse geocoding, not for this example!
