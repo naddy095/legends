@@ -4,6 +4,7 @@ class PlaygroundsController < ApplicationController
 
   before_action :authenticate_user!, only: [:admin]
   before_action :set_playground, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
   # before_action :authenticate_house_registration, only: [:create]
   
   respond_to :html
@@ -50,6 +51,7 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds/1/edit
   def edit
     @playground = Playground.find(params[:id])
+    render layout: false
     # respond_to do |format|
     #   format.js {}
     #   format.html {}
@@ -98,6 +100,7 @@ class PlaygroundsController < ApplicationController
   # PATCH/PUT /playgrounds/1
   # PATCH/PUT /playgrounds/1.json
   def update
+
      @playground = Playground.find(params[:id])
     respond_to do |format|
       if @playground.update(playground_params)
@@ -108,7 +111,8 @@ class PlaygroundsController < ApplicationController
           elsif params[:home_type] && params[:home_type]=="building"
           @playground.update(:myadd_type_id=>3)
           end
-        format.html { redirect_to @playground, notice: 'Playground was successfully updated.' }
+
+        format.html { redirect_to :back, notice: 'Playground was successfully updated.' }
         format.js {}  
       else
         format.html { render action: 'edit' }
