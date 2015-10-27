@@ -17,6 +17,12 @@
     <!-- <h3>House</h3> -->
     <table class="table table-bordered">
       <tbody>
+         <tr>
+          <th scope="row">Type</th>
+           
+          <td><%=  f.text_field :myadd_type, :class=>"form-control", :readonly => true%></td>
+         
+        </tr>
         <tr>
           <th scope="row">Name & no</th>
           <td><%= f.text_field :name, :class=>"form-control" %></td>
@@ -27,19 +33,19 @@
         </tr> 
         <tr>
           <th scope="row">City</th>
-          <td><%= f.text_field :city, :class=>"form-control" %></td>
+          <td><%= f.text_field :city, :class=>"form-control", :readonly => true %></td>
          </tr>
           <tr>
           <th scope="row">Pincode</th>
-          <td><%= f.text_field :postal_code, :class=>"form-control" %></td>
+          <td><%= f.text_field :postal_code, :class=>"form-control", :readonly => true %></td>
          </tr>
           <tr>
           <th scope="row">State</th>
-          <td><%= f.text_field :state, :class=>"form-control"%></td>
+          <td><%= f.text_field :state, :class=>"form-control", :readonly => true%></td>
          </tr>
           <tr>
           <th scope="row">Country</th>
-          <td><%= f.text_field :country, :class=>"form-control" %></td>
+          <td><%= f.text_field :country, :class=>"form-control", :readonly => true %></td>
          </tr>
          <tr>
           <th>Photo1</th>

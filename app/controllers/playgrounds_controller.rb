@@ -51,7 +51,7 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds/1/edit
   def edit
     @playground = Playground.find(params[:id])
-    render layout: false
+     render layout: false
     # respond_to do |format|
     #   format.js {}
     #   format.html {}
@@ -67,13 +67,16 @@ class PlaygroundsController < ApplicationController
     @playground = Playground.new(playground_params)
     if params[:home_type] && params[:home_type]=="house"
       @playground.myadd_type_id=1
+      @playground.myadd_type="House"
     elsif params[:home_type] && params[:home_type]=="apartment"
       @playground.myadd_type_id=2
+      @playground.myadd_type="Apartment"
     elsif params[:home_type] && params[:home_type]=="building"
       @playground.myadd_type_id=3
+      @playground.myadd_type="Building"
     end
     address = params[:playground][:address]
-    # logo    = params[:playground][:logo]
+    home_type    = params[:playground][:home_type]
     # picture = params[:playground][:picture]
     country = params[:playground][:country][0..1].upcase
     state = params[:playground][:state][0..1].upcase
