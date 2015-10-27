@@ -76,7 +76,7 @@ class PlaygroundsController < ApplicationController
       @playground.myadd_type="Building"
     end
     address = params[:playground][:address]
-    home_type    = params[:playground][:home_type]
+    # home_type    = params[:playground][:home_type]
     # picture = params[:playground][:picture]
     country = params[:playground][:country][0..1].upcase
     state = params[:playground][:state][0..1].upcase
