@@ -48,7 +48,7 @@ gem 'rails3-jquery-autocomplete'
 
 # bootstrap
 gem 'bootstrap-sass'
-
+gem 'will_paginate', '~> 3.0'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

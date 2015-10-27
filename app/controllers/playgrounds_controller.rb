@@ -144,9 +144,10 @@ class PlaygroundsController < ApplicationController
   end
 
   def admin
-   @pending_playgrounds = Playground.where(:status_id => false || nil)
-   @approved_playgrounds = Playground.where(:status_id => true)
-   @spam_playgrounds = Playground.where(:is_spam => true)
+
+   @pending_playgrounds = Playground.where(:status_id => false || nil).paginate(page: params[:page], per_page: 3)
+   @approved_playgrounds = Playground.where(:status_id => true).paginate(page: params[:page], per_page: 3)
+   @spam_playgrounds = Playground.where(:is_spam => true).paginate(page: params[:page], per_page: 3)
   end
 
   def update_house_status
