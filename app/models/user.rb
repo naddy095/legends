@@ -39,4 +39,6 @@ def self.from_omniauth(auth)
     end
   end
 
+  
+
 end

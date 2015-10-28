@@ -3,6 +3,9 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <!-- <div class="modal-content pop2">
+    <div class="modal-body"> -->
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -26,4 +29,6 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+ <!-- </div>
+</div> -->
+

@@ -144,6 +144,7 @@ class PlaygroundsController < ApplicationController
   end
 
   def admin
+    @playgrounds = Playground.paginate(:page => params[:page], :per_page => 5)
    @pending_playgrounds = Playground.where(:status_id => false || nil)
    @approved_playgrounds = Playground.where(:status_id => true)
    @spam_playgrounds = Playground.where(:is_spam => true)

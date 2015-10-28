@@ -11,7 +11,9 @@
 
  <div class="col-md-12">
  <h3>Administration</h3>
+   <%= will_paginate @playgrounds %>
             <div class="panel with-nav-tabs panel-primary">
+
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1primary" data-toggle="tab">Pending</a></li>
@@ -23,6 +25,7 @@
 <div class="panel-body">
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1primary">
+        
         	<h4><%= "Pending" %></h4>
 <table class="table table-bordered">
 <thead>
@@ -57,6 +60,7 @@
 </table>
 
     </div>
+
     
     <div class="tab-pane fade" id="tab2primary">
                     <h4><%= "Report Spam" %></h4>
@@ -136,6 +140,8 @@
                 </div>
             </div>
         </div>
+
+       
 
 </body>
 </html>
