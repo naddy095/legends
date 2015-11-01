@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
  @user = User.find_by(:email=>"admin@myadd.com")
-  if !@user.present?
-  User.create(email: 'admin@myadd.com', password: 'admin123', password_confirmation: 'admin123')
-  end
+ if !@user.present?
+  User.create(email: 'admin@myadd.com', password: 'admin123',
+  	password_confirmation: 'admin123', role: 'admin')
+ end

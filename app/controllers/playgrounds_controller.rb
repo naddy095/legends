@@ -144,12 +144,13 @@ class PlaygroundsController < ApplicationController
   end
 
   def admin
-
+    unless current_user.admin?
+      return redirect_to root_path, notice: "You are not authorized to perform this action"
+    end
    
-   @pending_playgrounds = Playground.where(:status_id => false || nil).paginate(page: params[:page], per_page: 3)
-   @approved_playgrounds = Playground.where(:status_id => true).paginate(page: params[:page], per_page: 3)
-   @spam_playgrounds = Playground.where(:is_spam => true).paginate(page: params[:page], per_page: 3)
-
+    @pending_playgrounds = Playground.where(:status_id => false || nil).paginate(page: params[:page], per_page: 3)
+    @approved_playgrounds = Playground.where(:status_id => true).paginate(page: params[:page], per_page: 3)
+    @spam_playgrounds = Playground.where(:is_spam => true).paginate(page: params[:page], per_page: 3)
   end
 
   def update_house_status
