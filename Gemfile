@@ -12,6 +12,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'pry'
+gem 'similar_text'
 
 gem "paperclip", "~> 4.2"
 gem 'kaminari'

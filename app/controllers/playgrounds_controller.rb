@@ -185,8 +185,8 @@ class PlaygroundsController < ApplicationController
       { :latitude => playground.latitude,
         :longitude => playground.longitude,
         :id => playground.id,
-        :label => playground.address,
-        :value => playground.address,
+        :label => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
+        :value => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
         :owner => playground.user_id == current_user.try(:id)
       }
     }
