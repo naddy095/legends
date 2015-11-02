@@ -5,11 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-
-    <%= f.email_field :email, autofocus: true, :required => true  %>
-
-  
-
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
@@ -17,17 +13,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-
-    <%= f.password_field :password, autocomplete: "off", :required => true  %>
-
-   
-
+    <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :required => true  %>
-  
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
@@ -35,4 +26,4 @@
   </div>
 <% end %>
 
-
+<%= render "users/shared/links" %>

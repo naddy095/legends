@@ -81,7 +81,7 @@ function closeInfowindow() {
 //display the home or apartment form here
 function display_form(){
  
-   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'</div>'+'</div>'
+   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<br/>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'<a href="#" onclick="openWindow2();" >sign in</a>'+'</div>'+'</div>'
   var html_h = html_val;
   var html_m = playgroundsNewMarker;
 
@@ -421,5 +421,24 @@ var URL = "/users/sign_up";
 }
 
 
+
+function openWindow2(){
+var URL = "/users/sign_in";
+// window.open(URL,"Recover","width=700,height=450");
+ $.ajax({
+        url: URL,
+        type: 'GET',
+        async: false,
+        success: function(html) { 
+
+            closeInfowindow();
+            // Add on close behaviour to clear this marker
+            // Set the content and open
+            Gmaps.map.visibleInfoWindow = new google.maps.InfoWindow({content: html});
+            Gmaps.map.visibleInfoWindow.open(Gmaps.map.serviceObject);
+    
+        }
+    });
+}
 
  
