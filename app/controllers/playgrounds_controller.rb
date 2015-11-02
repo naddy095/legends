@@ -201,7 +201,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def playground_params
-    params.require(:playground).permit(:name, :address, :latitude, :longitude, :street_number, :route, :city, :country, :postal_code, :state, :address_bar_index, :myadd_type_id, :hint, :user_id, :myadd_added_date, :myadd_approved_date, :status_id, :is_spam, :created_by, :last_updated_by, :image,:image1, :logo, :picture)
+    params.require(:playground).permit(:name, :address, :latitude, :longitude, :street_number, :route, :city, :country, :postal_code, :state, :address_bar_index, :myadd_type_id, :hint, :user_id, :myadd_added_date, :myadd_approved_date, :status_id, :is_spam, :created_by, :last_updated_by, :image,:image1, :logo, :picture, :role)
   end
   
   # Generic not found action

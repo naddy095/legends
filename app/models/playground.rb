@@ -24,11 +24,7 @@ has_attached_file :picture, :styles => {:small => "21x21", :medium => "300x300>"
  validates_attachment_content_type :picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
 
-<<<<<<< HEAD
-   
-=======
-  
->>>>>>> 2e7df36dc26caf0102bc6bd8ccccd92621b66f24
+
   # *** Server-side reverse geocoding, not for this example!
   #reverse_geocoded_by :latitude, :longitude do |obj,results|
   #  if geo = results.first

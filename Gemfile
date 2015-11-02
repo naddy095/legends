@@ -17,7 +17,7 @@ gem 'similar_text'
 gem "paperclip", "~> 4.2"
 gem 'will_paginate', '~> 3.0.6'
 gem 'kaminari'
-gem "will_paginate", "~> 3.0.4" 
+ 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
