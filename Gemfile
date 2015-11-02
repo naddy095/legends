@@ -14,7 +14,7 @@ gem 'omniauth-facebook'
 gem 'pry'
 
 gem "paperclip", "~> 4.2"
-gem 'kaminari'
+gem 'will_paginate', '~> 3.0.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

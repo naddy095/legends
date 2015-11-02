@@ -24,7 +24,7 @@ has_attached_file :picture, :styles => {:small => "21x21", :medium => "300x300>"
  validates_attachment_content_type :picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
 
-   WillPaginate.per_page = 5
+   
   # *** Server-side reverse geocoding, not for this example!
   #reverse_geocoded_by :latitude, :longitude do |obj,results|
   #  if geo = results.first
