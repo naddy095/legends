@@ -1,11 +1,12 @@
 
 
-<div>
+<div class="TopOne">
  <%= form_for @playground do |f| %>
   <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here', 'data-delimiter' => ',' %>
 <% end %>
-
+</div>
  
+<div class="Behind">
 <%= stylesheet_link_tag "gmaps4rails" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -127,9 +128,21 @@ copy
 }
 .address {
    width: 400px;
-   margin-left: 400px;
+    position: absolute;
+    float: left;
+   z-index: 1;
+   margin-left: 20px;
+
+}
+.Behind {
+  width:100%;
+  position: absolute;
+ 
   
 }
+/*.TopOne { 
+    position: absolute;
+    }*/
 
 </style>
 
