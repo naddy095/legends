@@ -279,7 +279,7 @@ function start_store(){
             success: function(data){ 
 
             
-                  showMarker({ latitude: latitude, longitude: longitude, myadd_type: type });
+               showMarker({ latitude: latitude, longitude: longitude, myadd_type: type });
 
              // window.location.href = "/playgrounds";
             },
