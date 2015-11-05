@@ -47,6 +47,7 @@ function playgroundsNew(geocode_information,user) {
         }
     });
   }
+
 }
 
 
@@ -97,15 +98,15 @@ function display_form1(h_v){
   //display the home or apartment type
   
   if (h_v && h_v==1){
-    html_val = '<strong><h3>House:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="house"/>'+html_v;
+    html_val = '<strong><h3>House:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="House"/>'+html_v;
   
   }
   else if (h_v && h_v==2){
 
-    html_val = '<strong><h3>Apartment:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="apartment"/>'+html_v;
+    html_val = '<strong><h3>Apartment:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="Apartment"/>'+html_v;
   
   }else if (h_v && h_v==3){
-    html_val = '<strong><h3>Building:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="building"/>'+html_v;
+    html_val = '<strong><h3>Building:</h3></strong><br><input type="hidden" name="house_type" id="house_type" value="Building"/>'+html_v;
   }else{
     html_val = html_v;
   }
@@ -232,7 +233,7 @@ function alert_user(message, type) {
 
 function start_store(){
 
-  var type = $('#house_type').val();
+  type = $('#house_type').val();
    country = $('#playground_country').val();
    name = $('#playground_name').val();
    address = $('#playground_address').val();
@@ -277,6 +278,8 @@ function start_store(){
 
             success: function(data){ 
 
+            
+                  showMarker({ latitude: latitude, longitude: longitude, myadd_type: type });
 
              // window.location.href = "/playgrounds";
             },
@@ -361,7 +364,7 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
 
 
 
-function showMarker (playground) {
+function showMarker(playground) {
   var icon = null;
 
   if (playground.myadd_type == "House") {
@@ -374,7 +377,7 @@ function showMarker (playground) {
     icon = window.location.origin + '/assets/office-building.png';
   }
   else {
-    icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    // icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
   }
 
 

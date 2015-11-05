@@ -65,13 +65,13 @@ class PlaygroundsController < ApplicationController
 
    
     @playground = Playground.new(playground_params)
-    if params[:home_type] && params[:home_type]=="house"
+    if params[:home_type] && params[:home_type]=="House"
       @playground.myadd_type_id=1
       @playground.myadd_type="House"
-    elsif params[:home_type] && params[:home_type]=="apartment"
+    elsif params[:home_type] && params[:home_type]=="Apartment"
       @playground.myadd_type_id=2
       @playground.myadd_type="Apartment"
-    elsif params[:home_type] && params[:home_type]=="building"
+    elsif params[:home_type] && params[:home_type]=="Building"
       @playground.myadd_type_id=3
       @playground.myadd_type="Building"
     end
