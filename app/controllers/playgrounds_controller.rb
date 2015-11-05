@@ -1,6 +1,6 @@
 class PlaygroundsController < ApplicationController
   require 'jwt/json'
-  autocomplete :playground, :address, :full => false, :extra_data => [:latitude, :longitude]
+  autocomplete :playground, :address, :full => false, :extra_data => [:latitude, :longitude, :myadd_type]
 
   before_action :authenticate_user!, only: [:admin]
   before_action :set_playground, only: [:show, :edit, :update, :destroy]
@@ -182,15 +182,18 @@ class PlaygroundsController < ApplicationController
     term = params[:term]
     # address_bar_index = params[:address_bar_index]
     playgrounds = Playground.where('address LIKE ? OR address_bar_index LIKE ?', "%#{term}%", "%#{term}%").order(:address)
+    
     render :json => playgrounds.map { |playground| 
       { :latitude => playground.latitude,
         :longitude => playground.longitude,
+        :myadd_type => playground.myadd_type,
         :id => playground.id,
         :label => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
         :value => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
         :owner => playground.user_id == current_user.try(:id)
       }
     }
+   
   end
 
 private

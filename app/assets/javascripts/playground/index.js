@@ -360,11 +360,28 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
   }
 
 
+
 function showMarker (playground) {
+  var icon = null;
+
+  if (playground.myadd_type == "House") {
+    icon = window.location.origin + '/assets/house.png';
+  }
+  else if (playground.myadd_type == "Apartment") {
+    icon = window.location.origin + '/assets/apartment-3.png';
+  }
+  else if (playground.myadd_type == "Building") {
+    icon = window.location.origin + '/assets/office-building.png';
+  }
+  else {
+    icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+  }
+
+
   playgroundMarker = new google.maps.Marker({
       position: new google.maps.LatLng(playground.latitude, playground.longitude), 
       map: Gmaps.map.serviceObject,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      icon: icon
   });
 
   // openPlagroundPopup(playground, playgroundMarker)
