@@ -17,6 +17,7 @@ Playgrounds::Application.routes.draw do
 get 'signout', to: 'sessions#destroy', as: 'signout'
    
 get  '/playgrounds/:id/spam'  =>  "playgrounds#spam"
+get  '/playgrounds/:id/show'  =>  "playgrounds#show_on_map"
 match 'admin' => 'playgrounds#admin', as: :admin, via: [:get, :post]
 
 devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }

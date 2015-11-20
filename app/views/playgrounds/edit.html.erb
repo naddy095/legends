@@ -24,12 +24,12 @@
          
         </tr>
         <tr>
-          <th scope="row">Name & no</th>
+          <th scope="row">Name/no</th>
           <td><%= f.text_field :name, :class=>"form-control" %></td>
         </tr>
         <tr>
           <th scope="row">Address</th>
-          <td><%= text_area(:playground, :address, cols: 35, rows: 5) %></td>
+          <td><%= text_area(:playground, :address, cols: 35, rows: 3) %></td>
         </tr> 
         <tr>
           <th scope="row">City</th>
@@ -64,7 +64,7 @@
   <%= f.hidden_field :street_number %>
   <%= f.hidden_field :route %>
 
-  <%= f.submit class: "btn btn-lg btn-primary", :value=>"update address" %>
+  <%= f.submit class: "btn btn-lg btn-primary", :value=>"update address", :style=> "height: 30px; font-size: 15px; border-radius: 1px; padding: 4px;" %>
     </div>
   </div>
   

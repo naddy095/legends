@@ -7,10 +7,11 @@
 function playgroundsNew(geocode_information,user) {
     
     // Create an new marker  
-    playgroundsNewMarker = new google.maps.Marker({
+        playgroundsNewMarker = new google.maps.Marker({
         position: new google.maps.LatLng(geocode_information.latitude,geocode_information.longitude), 
         map: Gmaps.map.serviceObject,
         icon: 'http://www.google.com/mapfiles/marker_green.png',
+        draggable: true
         //icon: 'http://maps.google.com/mapfiles/kml/pal3/icon20.png',
     });
     
@@ -47,10 +48,28 @@ function playgroundsNew(geocode_information,user) {
         }
     });
   }
-
+addDragListner(playgroundsNewMarker, user);
 }
 
+function addDragListner(marker, user) {
+// Add dragging event listeners.
+  // google.maps.event.addListener(marker, 'dragstart', function() {
+  //   updateMarkerAddress('Dragging...');
+  // });
+  
+  // google.maps.event.addListener(marker, 'drag', function() {
+  //   updateMarkerStatus('Dragging...');
+  //   updateMarkerPosition(marker.getPosition());
+  // });
 
+  google.maps.event.addListener(marker, 'dragend', function() {
+    clearMarker(marker);
+    geocodePoint(marker.getPosition(), function(data) {
+                   playgroundsNew(data, user);
+                });
+    // geocodePosition(marker.getPosition());
+  });
+}
 /**
  * Open one infowindow at a time 
  */
@@ -62,7 +81,7 @@ function openInfowindow(html, marker){
     html_v = html;
     marker_v = marker;
 
-     var contentString = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(1);">House<i class="fa fa-home"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(2);">Apartment<i class="fa fa-building"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(3);">Building<i class="fa fa-building-o"></i></a>'+'</h3>'+'</div>'+'</div>'
+     var contentString = '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(1);">House<i class="fa fa-home"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(2);">Apartment<i class="fa fa-building"></i></a>'+'</h3>'+'<h3>'+'<a href="javascript:void(0)" onclick="display_form1(3);">Building<i class="fa fa-building-o"></i></a>'+'</h3>'+'</div>' + '</div>'
       '</div>';
 
     // Set the content and open
@@ -82,7 +101,7 @@ function closeInfowindow() {
 //display the home or apartment form here
 function display_form(){
  
-   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<br/>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'<a href="#" onclick="openWindow2();" >sign in</a>'+'</div>'+'</div>'
+   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<br/>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'<a href="#" onclick="openWindow2();" >sign in</a>'+'</div>'+ '<div class="modal-footer"></div>' + '</div>'
   var html_h = html_val;
   var html_m = playgroundsNewMarker;
 
@@ -265,8 +284,7 @@ function start_store(){
    form_data.append("playground[longitude]", longitude); 
    form_data.append("playground[route]", route); 
    form_data.append("playground[street_number]", street_number);
-   
-  
+
     $.ajax({
             type: 'POST',
             url: '/playgrounds',
@@ -321,6 +339,7 @@ lat_l = {"A":parseFloat(log),"F":parseFloat(lat)}
         position: new google.maps.LatLng(geocode_information.latitude,geocode_information.longitude), 
         map: Gmaps.map.serviceObject,
         icon: 'http://www.google.com/mapfiles/marker_green.png',
+        draggable: true
         //icon: 'http://maps.google.com/mapfiles/kml/pal3/icon20.png',
     });
     
@@ -377,23 +396,24 @@ function showMarker(playground) {
     icon = window.location.origin + '/assets/office-building.png';
   }
   else {
-    // icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
   }
-
-
   playgroundMarker = new google.maps.Marker({
       position: new google.maps.LatLng(playground.latitude, playground.longitude), 
       map: Gmaps.map.serviceObject,
-      icon: icon
+      //icon: 'http://www.google.com/mapfiles/marker_green.png',
+      //center : {lat:playground.latitude,lng:playground.longitude},
+      draggable: false
   });
-
-  // openPlagroundPopup(playground, playgroundMarker)
-
+  var centerpoint = new google.maps.LatLng(playground.latitude, playground.longitude);
+  Gmaps.map.map.setCenter(centerpoint);
+  Gmaps.map.map.setZoom(15);
   playgroundMarker.addListener('click', function() {
     openPlagroundPopup(playground, playgroundMarker);
   });
 
 }
+
 
 function openPlagroundPopup(playground, playgroundMarker){
   if (playground.owner) {
@@ -413,8 +433,8 @@ function openPlagroundPopup(playground, playgroundMarker){
             closeInfowindow();
             // Add on close behaviour to clear this marker
             // Set the content and open
-            Gmaps.map.visibleInfoWindow = new google.maps.InfoWindow({content: html});
-            Gmaps.map.visibleInfoWindow.open(Gmaps.map.serviceObject, playgroundMarker);
+            var visibleInfoWindow = new google.maps.InfoWindow({content: html});
+            visibleInfoWindow.open(map, playgroundMarker);
     
         }
     });

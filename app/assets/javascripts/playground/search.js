@@ -8,12 +8,12 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function () {
+// $(document).ready(function () {
   
-  $("#admin_box").on("click", function(event, data){
+//   $("#admin_box").on("click", function(event, data){
     
     
-    showMarker(data.item)
-  });
+//     showMarker(data.item)
+//   });
 
-});
+// });

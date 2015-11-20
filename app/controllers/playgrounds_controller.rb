@@ -37,6 +37,11 @@ class PlaygroundsController < ApplicationController
     respond_with(@playground, :layout =>  !request.xhr?)
   end
 
+  def show_on_map
+    @playground = Playground.find(params[:id])
+     render layout: false
+  end
+
   def spam
      @playground = Playground.new
      respond_with(@playground, :layout =>  !request.xhr?)
@@ -181,14 +186,14 @@ class PlaygroundsController < ApplicationController
     
     term = params[:term]
     # address_bar_index = params[:address_bar_index]
-    playgrounds = Playground.where('address LIKE ? OR address_bar_index LIKE ?', "%#{term}%", "%#{term}%").order(:address)
+    playgrounds = Playground.where('LOWER(address) LIKE ? OR LOWER(address_bar_index) LIKE ?', "%#{term.downcase}%", "%#{term.downcase}%").order(:address)
     
     render :json => playgrounds.map { |playground| 
       { :latitude => playground.latitude,
         :longitude => playground.longitude,
         :myadd_type => playground.myadd_type,
         :id => playground.id,
-        :label => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
+        :label => playground.address.to_s + " - #{playground.address.similar(term).round(3)}%",
         :value => playground.address.to_s + " - #{playground.address.similar(term).round(2)}%",
         :owner => playground.user_id == current_user.try(:id)
       }
