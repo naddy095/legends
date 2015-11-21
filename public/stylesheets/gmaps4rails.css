@@ -2,7 +2,13 @@
   width: 100%;
 }
 
-.gmaps4rails_map {
-  height: 600px;
+.address {
+  margin-left: 85px !important;
+  margin-top: 27px;
+  padding: 5px;
+}
+
+.Behind, .map_container, .gmaps4rails_map {
+  height: 100%;
 }
 
