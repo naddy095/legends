@@ -4,6 +4,19 @@
 * Invokes rails /playgrounds/create by ajax
 * Add the form to google maps infowindow
 */
+window.generate_address = false;
+
+$(document).ready(function(){
+  $('.generate_address').click(function(){
+      if (window.generate_address) {
+        return;
+      }
+      $(this).text("Click anywhere to generate address");
+      window.generate_address = true;
+      $("div[title='Show satellite imagery']")[0].click();
+  });
+});
+
 function playgroundsNew(geocode_information,user) {
     
     // Create an new marker  
@@ -100,8 +113,11 @@ function closeInfowindow() {
 
 //display the home or apartment form here
 function display_form(){
+  if (!window.generate_address) {
+    return;
+  } 
  
-   html_val =  '<div class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<br/>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'<a href="#" onclick="openWindow2();" >sign in</a>'+'</div>'+ '<div class="modal-footer"></div>' + '</div>'
+   html_val =  '<div style="z-index: 1000" class="modal-content pop1">'+'<div class="modal-body">'+'<div class="col-md-12">'+'<h3>'+'<a href="/users/auth/google_oauth2" >Gmail<i class="fa fa-google"></i></a>'+'<a href="/users/auth/facebook" id="sign_in" >Facebook<i class="fa fa-facebook-official"></i></a>'+'<br/>'+'<a href="#" onclick="openWindow1();" >sign up</a>'+'<a href="#" onclick="openWindow2();" >sign in</a>'+'</div>'+ '<div class="modal-footer"></div>' + '</div>'
   var html_h = html_val;
   var html_m = playgroundsNewMarker;
 

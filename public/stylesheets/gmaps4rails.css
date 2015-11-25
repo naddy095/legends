@@ -12,3 +12,20 @@
   height: 100%;
 }
 
+.generate_address_wrapper {
+  width: 98%;
+  position: absolute;
+  margin-top: 27px;
+  align: center;
+  z-index: 50 !important;
+}
+
+.generate_address {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 45%;
+  padding: 5px;
+  background-color: white;
+  font-weight: bold;
+}
+
