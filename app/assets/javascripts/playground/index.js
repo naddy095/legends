@@ -102,12 +102,18 @@ function openInfowindow(html, marker){
     Gmaps.map.visibleInfoWindow.open(Gmaps.map.serviceObject, marker);
 }
 
+function disableGenerateAddress() {
+  window.generate_address = false;
+  $('.generate_address')[0].text("Generate Address");
+}
+
 /**
  * Close the infowindow
  */
 function closeInfowindow() {
-    if (Gmaps.map.visibleInfoWindow) 
+    if (Gmaps.map.visibleInfoWindow) {
         Gmaps.map.visibleInfoWindow.close();
+    }
 }
 
 
