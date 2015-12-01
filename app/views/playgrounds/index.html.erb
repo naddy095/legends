@@ -1,10 +1,10 @@
 
 
 <div class="TopOne">
-  <div class="generate_address_wrapper"><span class="generate_address">Generate Address</span></div>
   <%= form_for @playground do |f| %>
     <%= f.autocomplete_field :address, autocomplete_playground_address_playgrounds_path, class: "address", id: 'playground_search_box', placeholder: 'Search Your Location Here', 'data-delimiter' => ',' %>
   <% end %>
+  <div class="generate_address_wrapper"><span class="generate_address">Generate Address</span></div>
 </div>
  
 <div class="Behind">
@@ -131,7 +131,7 @@ copy
    width: 400px;
     position: absolute;
     float: left;
-   z-index: 1;
+   z-index: 55;
    margin-left: 20px;
 
 }
