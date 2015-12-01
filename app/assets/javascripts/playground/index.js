@@ -136,6 +136,9 @@ function display_form(){
 
 function display_form1(h_v){
 
+  if (!window.generate_address) {
+    return;
+  }
   //display the home or apartment type
   
   if (h_v && h_v==1){
