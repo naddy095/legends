@@ -46,7 +46,7 @@ gem 'gmaps4rails'
 gem 'jquery-ui-rails'
 
 # elasticsearch
-gem 'tire'
+#gem 'tire'
 
 # geocoder gem
 gem "geocoder"
