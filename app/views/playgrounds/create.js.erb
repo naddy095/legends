@@ -1,7 +1,9 @@
+created_playground_id = undefined; // global js variable
+
 <%if (@playground.errors.empty?) %>    
     
     var createMarkerWithInfoWindow = function () {
-    
+        created_playground_id = <%=@playground.id%>
         // Remove previous marker
         clearMarker(playgroundsNewMarker);
 

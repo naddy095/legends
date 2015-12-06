@@ -153,15 +153,15 @@ class PlaygroundsController < ApplicationController
       return redirect_to root_path, notice: "You are not authorized to perform this action"
     end
    
-    @pending_playgrounds = Playground.where(:status_id => false || nil).paginate(page: params[:page], per_page: 3)
-    @approved_playgrounds = Playground.where(:status_id => true).paginate(page: params[:page], per_page: 3)
-    @spam_playgrounds = Playground.where(:is_spam => true).paginate(page: params[:page], per_page: 3)
+    @pending_playgrounds = Playground.where(:status_id => nil).paginate(page: params[:page], per_page: 3)
+    @activated_playgrounds = Playground.where(:status_id => 1).paginate(page: params[:page], per_page: 3)
+    @deleted_playgrounds = Playground.where(:status_id => 0).paginate(page: params[:page], per_page: 3)
   end
 
   def update_house_status
     if params[:id]
        playground =  Playground.find(params[:id])
-       playground.update(:status_id => params[:status] == "true" ? true  : false)
+       playground.update(:status_id => params[:status].to_s == "true" ? 1 : 0)
     end
  
   end
@@ -186,7 +186,7 @@ class PlaygroundsController < ApplicationController
     
     term = params[:term]
     # address_bar_index = params[:address_bar_index]
-    playgrounds = Playground.where('LOWER(address) LIKE ? OR LOWER(address_bar_index) LIKE ?', "%#{term.downcase}%", "%#{term.downcase}%").order(:address)
+    playgrounds = Playground.search(term, current_user.try(:id)) #Playground.where('LOWER(address) LIKE ? OR LOWER(address_bar_index) LIKE ?', "%#{term.downcase}%", "%#{term.downcase}%").order(:address)
     
     render :json => playgrounds.map { |playground| 
       { :latitude => playground.latitude,

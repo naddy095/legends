@@ -45,6 +45,9 @@ gem 'gmaps4rails'
 # jquery
 gem 'jquery-ui-rails'
 
+# elasticsearch
+#gem 'tire'
+
 # geocoder gem
 gem "geocoder"
 gem 'rails3-jquery-autocomplete'

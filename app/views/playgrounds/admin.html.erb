@@ -20,8 +20,8 @@
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1primary" data-toggle="tab">Pending</a></li>
-                            <li><a href="#tab2primary" data-toggle="tab">Report Spam</a></li>
-                            <li><a href="#tab3primary" data-toggle="tab">Approved</a></li>
+                            <li><a href="#tab2primary" data-toggle="tab">Activated</a></li>
+                            <li><a href="#tab3primary" data-toggle="tab">Deleted</a></li>
                             
                         </ul>
                 </div>
@@ -34,11 +34,11 @@
 <table class="table table-bordered">
 <thead>
 <tr>
-<th><%= 'Address Bar'%></th>
+<th><%='Address Bar'%></th>
 <th><%='Name'%></th>
  <th><%='Address'%></th>
  <th><%='Type' %></th>
- <th><%='Manage'%></th>
+ <th><%='Decision'%></th>
 </tr>
 </thead>
 
@@ -50,15 +50,19 @@
     <%if playground.myadd_type_id == 1  %>
     <td><%="House"%></td>
     <% elsif playground.myadd_type_id == 2 %>
-    <td><%="Apartment" %></td>
+    <td><%="Apartment"%></td>
     <% elsif playground.myadd_type_id == 3 %>
-    <td><%="Building" %></td>
+    <td><%="Building"%></td>
+    <% else %>
+    <td>&nbsp;</td>
     <% end %>
-	<% if playground.status_id? %>
-	<td><a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',false);" title=""><%= "Deactivate" %></a></td>
-	<% else %>
-	 <td><a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',true);" title=""><%='Activate'%></a></td>
-	<% end %>
+	<td>
+    <a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',true);" title=""><%= "Activate" %></a>
+    |
+    <a href="/playgrounds/<%=playground.id%>/edit" title=""><%='Edit'%></a>
+    |
+    <a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',false);" title=""><%= "Delete" %></a>
+    </td>
 	</tr>
 <% end %>
 </table>
@@ -68,46 +72,7 @@
 
     
     <div class="tab-pane fade" id="tab2primary">
-                    <h4><%= "Report Spam" %></h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th><%='Address Bar'%></th>
-<th><%='Name'%></th>
-  <th><%='Description'%></th>
- <th><%='Type' %></th>
- <th><%='Manage'%></th>
-</tr>
-</thead>
-
-<% @spam_playgrounds.each do | playground| %>
-<tr>
-     <td><%=playground.address_bar_index %></td>
-    <td><%= playground.name.capitalize %></td>
-    <td><%=playground.spam_details %></td>
-    <%if playground.myadd_type_id == 1  %>
-    <td><%="House"%></td>
-    <% elsif playground.myadd_type_id == 2 %>
-    <td><%="Apartment" %></td>
-    <% elsif playground.myadd_type_id == 3 %>
-    <td><%="Building" %></td>
-    <% end %>
-   
-    <td>
-    <% @playground = playground%>
-    <%#= link_to "Destroy" , :action =>"destroy", :id => playground.id , :method =>"delete"%>
-    <!-- <a href="/playgrounds/<%=playground.id%>"  title="" method="delete"><%= "Destroy" %></a> -->
-    <%= link_to raw('Destroy <i class="icon-trash"></i>'), @playground, class: "btn btn-lg", method: "delete", data: { confirm: 'Are you sure?' }, :remote =>true %>
-
-    </td>
-    
-    </tr>
-<% end %>
-</table>
- <%= will_paginate @spam_playgrounds %>
-    </div>
-    <div class="tab-pane fade" id="tab3primary">
-    	<h4><%= "Approved" %></h4>
+                    <h4><%= "Activated" %></h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -115,11 +80,11 @@
 <th><%='Name'%></th>
  <th><%='Address'%></th>
  <th><%='Type' %></th>
- <th><%='Manage'%></th>
+ <th><%='Decision'%></th>
 </tr>
 </thead>
 
-<% @approved_playgrounds.each do | playground| %>
+<% @activated_playgrounds.each do | playground| %>
 <tr>
      <td><%=playground.address_bar_index %></td>
     <td><%= playground.name.capitalize %></td>
@@ -127,21 +92,65 @@
     <%if playground.myadd_type_id == 1  %>
     <td><%="House"%></td>
     <% elsif playground.myadd_type_id == 2 %>
-    <td><%="Apartment" %></td>
+    <td><%="Apartment"%></td>
     <% elsif playground.myadd_type_id == 3 %>
-    <td><%="Building" %></td>
+    <td><%="Building"%></td>
+    <% else %>
+    <td>&nbsp;</td>
     <% end %>
-	<% if playground.status_id? %>
-	<td><a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',false);" title=""><%= "Deactivate" %></a></td>
-	<% else %>
-	 <td><a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',true);" title=""><%='Activate'%></a></td>
-	<% end %>
+    <td>
+    <span title=""><%='Activate'%></span>
+    |
+    <a href="/playgrounds/<%=playground.id%>/edit" title=""><%='Edit'%></a>
+    |
+    <a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',false);" title=""><%= "Delete" %></a>
+    </td>
+    
+    </tr>
+<% end %>
+</table>
+ <%= will_paginate @activated_playgrounds %>
+    </div>
+    <div class="tab-pane fade" id="tab3primary">
+    	<h4><%= "Deleted" %></h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th><%='Address Bar'%></th>
+<th><%='Name'%></th>
+ <th><%='Address'%></th>
+ <th><%='Type' %></th>
+ <th><%='Decision'%></th>
+</tr>
+</thead>
+
+<% @deleted_playgrounds.each do | playground| %>
+<tr>
+     <td><%=playground.address_bar_index %></td>
+    <td><%= playground.name.capitalize %></td>
+    <td><%=playground.address %></td>
+    <%if playground.myadd_type_id == 1  %>
+    <td><%="House"%></td>
+    <% elsif playground.myadd_type_id == 2 %>
+    <td><%="Apartment"%></td>
+    <% elsif playground.myadd_type_id == 3 %>
+    <td><%="Building"%></td>
+    <% else %>
+    <td>&nbsp;</td>
+    <% end %>
+    <td>
+    <a href="javascript:void(0);" onclick="update_house('<%=playground.id%>',true);" title=""><%= "Activate" %></a>
+    |
+    <a href="/playgrounds/<%=playground.id%>/edit" title=""><%='Edit'%></a>
+    |
+    <span title=""><%='Delete'%></span>
+    </td>
 	</tr>
 <% end %>
 
 
 </table>
-<%= will_paginate @approved_playgrounds %>
+<%= will_paginate @deleted_playgrounds %>
                         </div>
                        
                     </div>

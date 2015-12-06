@@ -136,6 +136,9 @@ function display_form(){
 
 function display_form1(h_v){
 
+  if (!window.generate_address) {
+    return;
+  }
   //display the home or apartment type
   
   if (h_v && h_v==1){
@@ -293,8 +296,12 @@ function start_store(){
    var file_data = $("#playground_logo").prop("files")[0];
    var file_data_two = $("#playground_picture").prop("files")[0];
    var form_data = new FormData();
-   form_data.append("playground[logo]", file_data); 
-   form_data.append("playground[picture]", file_data_two); 
+   if (file_data != undefined) {
+      form_data.append("playground[logo]", file_data); 
+   }
+   if (file_data_two != undefined) {
+      form_data.append("playground[picture]", file_data_two);
+   }
    form_data.append("playground[country]", country);  
    form_data.append("playground[name]", name); 
    form_data.append("playground[address]", address);  
@@ -319,7 +326,7 @@ function start_store(){
             success: function(data){ 
 
             
-               showMarker({ latitude: latitude, longitude: longitude, myadd_type: type });
+               showMarker({ latitude: latitude, longitude: longitude, myadd_type: type, id: created_playground_id });
 
              // window.location.href = "/playgrounds";
             },
