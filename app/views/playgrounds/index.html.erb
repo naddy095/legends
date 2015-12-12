@@ -160,7 +160,8 @@ copy
             :detect_location => true,       
             :center_on_user  => true,        
             :zoom => 13,
-            :auto_adjust => false
+            :auto_adjust => false,
+            :libraries => ["places"]
           }
 ) %>
 
@@ -185,7 +186,7 @@ copy
 
         // Google maps map-related events
         Gmaps.map.callback = function() {
-var input = document.getElementById('playground_search_box');
+        var input = document.getElementById('playground_search_box');
         var searchBox = new google.maps.places.SearchBox(input);
         Gmaps.map.map.addListener('bounds_changed', function() {
         searchBox.setBounds(Gmaps.map.map.getBounds());
@@ -244,7 +245,9 @@ var input = document.getElementById('playground_search_box');
                
                 geocodePoint(event.latLng, function(data) {
                    playgroundsNew(data, '<%=current_user%>');
-                });                
+
+                });
+
             });
         }; 
     </script>
