@@ -177,7 +177,13 @@ copy
                 alert_user('There was an error processing your request. Please try again later', 'alert-error');
             });
         });
-
+if(localStorage.address != undefined){
+  Gmaps.map.callback = function() {
+    Gmaps.map.map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+      start_store('<%=current_user%>');
+    }
+    }
+    else{
         // Instance geocoder
         var geocoder = new google.maps.Geocoder();
 
@@ -250,6 +256,7 @@ copy
 
             });
         }; 
+      }
     </script>
 <% end %>
 

@@ -29,10 +29,6 @@ function playgroundsNew(geocode_information,user) {
     });
     
     // Invoke rails app to get the create form
-    if(!user){
-      display_form();
-    }else
-    {
     $.ajax({
         url: '/playgrounds/new?' + jQuery.param({playground:geocode_information}) + '#chunked=true',
         type: 'GET',
@@ -60,7 +56,7 @@ function playgroundsNew(geocode_information,user) {
             });
         }
     });
-  }
+  
 addDragListner(playgroundsNewMarker, user);
 }
 
@@ -275,8 +271,17 @@ function alert_user(message, type) {
     }, 5000);
 }
 
-function start_store(){
-
+function start_store(user){
+  var form_data = {};
+  form_data["playground"] = {};
+  if(localStorage.address != undefined){
+    form_data = JSON.parse(localStorage.address);
+    latitude = form_data.playground.latitude;
+    longitude = form_data.playground.longitude;
+    type = form_data.home_type;
+    localStorage.removeItem("address");
+   }
+   else{
   type = $('#house_type').val();
    country = $('#playground_country').val();
    name = $('#playground_name').val();
@@ -293,39 +298,41 @@ function start_store(){
   
   //  $.post($('#playground_form').attr('action'),$('#playground_form').serialize()+"&home_type="+type+"&image1="+image1+"&image="+image, null, "script");
 
-   var file_data = $("#playground_logo").prop("files")[0];
-   var file_data_two = $("#playground_picture").prop("files")[0];
-   var form_data = new FormData();
-   if (file_data != undefined) {
-      form_data.append("playground[logo]", file_data); 
-   }
-   if (file_data_two != undefined) {
-      form_data.append("playground[picture]", file_data_two);
-   }
-   form_data.append("playground[country]", country);  
-   form_data.append("playground[name]", name); 
-   form_data.append("playground[address]", address);  
-   form_data.append("home_type", type);  
-   form_data.append("playground[city]", city);  
-   form_data.append("playground[postal_code]", postal_code);  
-   form_data.append("playground[state]", state);  
-   form_data.append("playground[latitude]", latitude); 
-   form_data.append("playground[longitude]", longitude); 
-   form_data.append("playground[route]", route); 
-   form_data.append("playground[street_number]", street_number);
-
+   // var file_data = $("#playground_logo").prop("files")[0];
+   // var file_data_two = $("#playground_picture").prop("files")[0];
+   // form_data = new FormData();
+   // if (file_data != undefined) {
+   //    form_data.append("playground[logo]", file_data); 
+   // }
+   // if (file_data_two != undefined) {
+   //    form_data.append("playground[picture]", file_data_two);
+   // }
+   form_data["playground"]["country"] = country;  
+   form_data["playground"]["name"] = name; 
+   form_data["playground"]["address"] = address;  
+   form_data["home_type"] = type;  
+   form_data["playground"]["city"] = city;  
+   form_data["playground"]["postal_code"] = postal_code;  
+   form_data["playground"]["state"] = state;  
+   form_data["playground"]["latitude"] = latitude; 
+   form_data["playground"]["longitude"] = longitude; 
+   form_data["playground"]["route"] = route;
+   form_data["playground"]["street"] = street_number;
+ }
+   if(!user){
+    localStorage.setItem("address", JSON.stringify(form_data));
+    alert(localStorage.address);
+      display_form();
+    }else
+    {
     $.ajax({
             type: 'POST',
             url: '/playgrounds',
             data: form_data,
-            processData: false,
-            contentType: false,
             dataType : 'script',
             cache: false,
 
             success: function(data){ 
-
-            
                showMarker({ latitude: latitude, longitude: longitude, myadd_type: type, id: created_playground_id });
 
              // window.location.href = "/playgrounds";
@@ -335,6 +342,7 @@ function start_store(){
             }
             });
 
+}
 }
 
  function report_spam(id,lat,log){
