@@ -298,15 +298,15 @@ function start_store(user){
   
   //  $.post($('#playground_form').attr('action'),$('#playground_form').serialize()+"&home_type="+type+"&image1="+image1+"&image="+image, null, "script");
 
-   // var file_data = $("#playground_logo").prop("files")[0];
-   // var file_data_two = $("#playground_picture").prop("files")[0];
+   var file_data = $("#playground_logo").prop("files")[0];
+   var file_data_two = $("#playground_picture").prop("files")[0];
    // form_data = new FormData();
-   // if (file_data != undefined) {
-   //    form_data.append("playground[logo]", file_data); 
-   // }
-   // if (file_data_two != undefined) {
-   //    form_data.append("playground[picture]", file_data_two);
-   // }
+   if (file_data != undefined) {
+      form_data["playground"]["logo"] = file_data; 
+   }
+   if (file_data_two != undefined) {
+      form_data["playground"]["picture"] = file_data_two;
+   }
    form_data["playground"]["country"] = country;  
    form_data["playground"]["name"] = name; 
    form_data["playground"]["address"] = address;  
@@ -321,7 +321,6 @@ function start_store(user){
  }
    if(!user){
     localStorage.setItem("address", JSON.stringify(form_data));
-    alert(localStorage.address);
       display_form();
     }else
     {
